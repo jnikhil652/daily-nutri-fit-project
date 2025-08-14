@@ -89,4 +89,4 @@
 
 ### Code Repository
 - **Platform:** GitHub
-- **URL:** TBD (to be determined when repository is created)
+- **URL:** https://github.com/jnikhil652/daily-nutri-fit-project
