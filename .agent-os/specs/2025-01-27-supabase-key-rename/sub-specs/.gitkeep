@@ -1,0 +1,5 @@
+# Sub-specs directory
+
+This directory is reserved for any sub-specifications that may be needed for the Supabase environment variable rename spec.
+
+Currently, this spec is simple enough that no sub-specs are required, but this directory maintains consistency with the project structure.

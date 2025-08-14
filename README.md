@@ -1,138 +1,146 @@
-# DailyNutriFit
+# Daily Nutri Fit - Fruit Delivery App
 
-> **Personalized fruit delivery app that helps health-conscious individuals meet their nutritional needs through AI-powered recommendations, family coordination, and community engagement.**
+A React Native app for personalized fruit delivery with health-focused recommendations.
 
-## Overview
+## 🚀 Current Status
 
-DailyNutriFit transforms healthy eating from a daily struggle into an enjoyable, social experience. Our app delivers fresh, quality fruits tailored to individual health profiles while fostering community engagement through challenges, family plans, and shared wellness journeys.
+### ✅ Completed Features
+- **User Authentication System**
+  - User registration with email/password
+  - Login functionality
+  - Password reset via email
+  - Session persistence
+  - Automatic profile creation
+  - Protected routes
 
-## Key Features
+### 🔄 In Progress
+- Fruit catalog system
+- Shopping cart functionality
+- Wallet system
+- Payment integration
 
-### 🎯 Health-Focused Personalization
-- AI-powered fruit recommendations based on health profiles
-- Custom health assessments and goal tracking
-- Nutritional analysis and progress monitoring
-
-### 👨‍👩‍👧‍👦 Family & Social Features
-- Family plans with individual health profiles
-- Community challenges and healthy competitions
-- Referral system with rewards and incentives
-
-### 📱 Advanced Customization
-- Drag-and-drop custom delivery plan builder
-- Flexible scheduling with pause/resume options
-- Seasonal recommendations and variety optimization
-
-### 🏥 Professional Support
-- Verified nutritionist directory
-- Video consultation scheduling
-- Expert guidance integration
-
-## Tech Stack
-
-- **Mobile Framework:** React Native with Expo
-- **Backend:** Supabase (PostgreSQL + Auth + Storage)
-- **Payment Processing:** Stripe
-- **Push Notifications:** Expo Notifications
-- **Deployment:** Expo Application Services (EAS)
-
-## Project Structure
-
-```
-daily-nutri-fit-project/
-├── .agent-os/                    # Agent OS documentation
-│   ├── product/                  # Product vision & roadmap
-│   │   ├── mission.md
-│   │   ├── tech-stack.md
-│   │   ├── roadmap.md
-│   │   └── decisions.md
-│   └── specs/                    # Feature specifications
-│       ├── 2025-08-15-health-personalization/
-│       ├── 2025-08-15-custom-plans-advanced/
-│       └── 2025-08-15-social-engagement/
-├── CLAUDE.md                     # AI development assistant configuration
-└── README.md
-```
-
-## Development Phases
-
-### Phase 1: Core MVP ✅
-- User authentication and profiles
-- Basic fruit catalog and ordering
-- Wallet system and payment integration
-
-### Phase 2: Health Personalization 📋
-- Health profile setup and assessments
-- AI-powered fruit recommendations
-- Subscription plans and delivery scheduling
-
-### Phase 3: Custom Plans & Advanced Features 📋
-- Custom delivery plan builder
-- Comprehensive nutritional tracking
-- Advanced delivery management
-
-### Phase 4: Social & Engagement Features 📋
-- Family plans and multi-user accounts
-- Referral system and community challenges
-- Recipe sharing and social achievements
-
-### Phase 5: Enterprise & Scale Features 📋
-- Corporate wellness programs
-- Advanced analytics and insights
-- Third-party integrations
-
-## Agent OS Integration
-
-This project uses [Agent OS](https://buildermethods.com/agent-os) for structured AI-assisted development:
-
-- **Product Documentation:** Complete mission, roadmap, and technical specifications
-- **Feature Specs:** Detailed technical requirements and task breakdowns
-- **Development Standards:** Code style, best practices, and quality guidelines
-
-## Getting Started
+## 🛠 Setup Instructions
 
 ### Prerequisites
 - Node.js 22 LTS
+- npm or yarn
 - Expo CLI
-- Git
+- Supabase account
 
-### Development Setup
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/jnikhil652/daily-nutri-fit-project.git
-   cd daily-nutri-fit-project
+### 2. Supabase Setup
+1. Create a new project at [supabase.com](https://supabase.com)
+2. Go to Settings > API to get your project URL and anon key
+3. Copy `.env.example` to `.env` and fill in your Supabase credentials:
+   ```
+   EXPO_PUBLIC_SUPABASE_URL=your_supabase_url_here
+   EXPO_PUBLIC_SUPABASE_KEY=your_supabase_publishable_key_here
    ```
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+### 3. Database Setup
+1. In your Supabase dashboard, go to SQL Editor
+2. Run the SQL commands from `database/schema.sql`
+3. This will create:
+   - `profiles` table for user information
+   - `delivery_addresses` table for user addresses
+   - Row Level Security policies
+   - Automatic profile creation trigger
 
-3. **Start development server:**
-   ```bash
-   expo start
-   ```
+### 4. Run the App
+```bash
+npm start
+```
 
-## Contributing
+Then:
+- Press `i` for iOS simulator
+- Press `a` for Android emulator
+- Scan QR code with Expo Go app on your device
 
-This project follows Agent OS development practices:
+## 📱 Features
 
-1. **Check the roadmap:** Review `@.agent-os/product/roadmap.md` for current priorities
-2. **Create feature specs:** Use `@.agent-os/instructions/create-spec.md` for new features
-3. **Follow standards:** Adhere to guidelines in `.agent-os/standards/`
+### Authentication
+- **Registration**: Create account with email, password, and full name
+- **Login**: Sign in with email and password
+- **Password Reset**: Reset password via email link
+- **Session Management**: Automatic session persistence and refresh
+- **Profile Management**: Automatic profile creation on signup
 
-## License
+### Navigation
+- **Auth Flow**: Login, Register, Forgot Password screens
+- **Main Flow**: Home screen for authenticated users
+- **Protected Routes**: Automatic redirection based on auth state
 
-MIT License - see [LICENSE](LICENSE) file for details.
+## 🏗 Architecture
 
-## Support
+### Tech Stack
+- **Frontend**: React Native with Expo
+- **Backend**: Supabase (PostgreSQL + Auth)
+- **Navigation**: React Navigation v6
+- **Forms**: React Hook Form + Yup validation
+- **State Management**: React Context
+- **Storage**: AsyncStorage for session persistence
 
-For questions or support:
-- Review the [product documentation](.agent-os/product/)
-- Check [feature specifications](.agent-os/specs/)
-- Create an issue for bugs or feature requests
+### Project Structure
+```
+├── contexts/
+│   └── AuthContext.tsx          # Authentication state management
+├── navigation/
+│   ├── AppNavigator.tsx         # Main navigation container
+│   ├── AuthNavigator.tsx        # Authentication flow
+│   └── MainNavigator.tsx        # Authenticated user flow
+├── screens/
+│   ├── auth/
+│   │   ├── LoginScreen.tsx      # Login form
+│   │   ├── RegisterScreen.tsx   # Registration form
+│   │   └── ForgotPasswordScreen.tsx # Password reset
+│   └── main/
+│       └── HomeScreen.tsx       # Main dashboard
+├── lib/
+│   └── supabase.ts             # Supabase client configuration
+└── database/
+    └── schema.sql              # Database schema
+```
 
----
+## 🔐 Security Features
 
-*Built with ❤️ for healthier communities*
+- **Row Level Security**: Database-level access control
+- **JWT Authentication**: Secure token-based auth
+- **Email Verification**: Optional email verification on signup
+- **Password Validation**: Minimum 6 characters required
+- **Session Management**: Automatic token refresh
+
+## 📋 Next Steps
+
+Based on the product roadmap, the next features to implement are:
+
+1. **Fruit Catalog** - Browse available fruits with images and descriptions
+2. **Basic Ordering** - Shopping cart and order placement
+3. **Wallet System** - Digital wallet for payments
+4. **Payment Integration** - Stripe integration for wallet top-up
+
+## 🧪 Testing
+
+To test the authentication system:
+
+1. Start the app
+2. Try registering a new account
+3. Check your email for verification (if enabled)
+4. Test login with the new account
+5. Test password reset functionality
+6. Verify session persistence by closing and reopening the app
+
+## 🤝 Contributing
+
+This project follows the Agent OS development workflow. See `.agent-os/` directory for:
+- Product specifications
+- Development roadmap
+- Technical decisions
+- Task management
+
+## 📄 License
+
+MIT License - see LICENSE file for details.
