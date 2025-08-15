@@ -3,6 +3,7 @@
 > Spec: Custom Plans & Advanced Features
 > Created: 2025-08-15
 > Status: Planning
+> Priority: P2 (Medium) - Advanced features, depends on Health Personalization
 
 ## Overview
 

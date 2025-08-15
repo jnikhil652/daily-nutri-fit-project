@@ -3,6 +3,7 @@
 > Spec: Basic Ordering System
 > Created: 2025-08-14
 > Status: Planning
+> Priority: P1 (High) - Core MVP functionality, depends on User Auth and Fruit Catalog
 
 ## Overview
 

@@ -3,6 +3,7 @@
 > Spec: User Authentication System
 > Created: 2025-08-14
 > Status: Planning
+> Priority: P0 (Critical) - Foundational requirement, blocks all other features
 
 ## Overview
 

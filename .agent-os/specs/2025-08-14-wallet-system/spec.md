@@ -4,6 +4,7 @@
 > Created: 2025-08-14
 > Status: In Progress (75% Complete)
 > Last Updated: 2025-08-15
+> Priority: P1 (High) - Required for MVP ordering, depends on User Auth
 
 ## Overview
 

@@ -3,6 +3,7 @@
 > Spec: Health Personalization
 > Created: 2025-08-15
 > Status: Planning
+> Priority: P2 (Medium) - Key differentiator, implement after MVP is stable
 
 ## Overview
 

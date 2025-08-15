@@ -3,6 +3,7 @@
 > Spec: Social & Engagement Features
 > Created: 2025-08-15
 > Status: Planning
+> Priority: P3 (Low) - User engagement and growth features, implement after core platform
 
 ## Overview
 

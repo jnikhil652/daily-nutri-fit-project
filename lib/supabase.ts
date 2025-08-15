@@ -219,3 +219,200 @@ export interface OrderWithDetails extends Order {
 export interface OrderItemWithFruit extends OrderItem {
   fruit?: Fruit;
 }
+
+//
+// Social Features Types
+
+export interface FamilyPlan {
+  id: string;
+  family_name: string;
+  primary_account_holder: string;
+  billing_account: string | null;
+  max_members: number;
+  plan_type: string;
+  shared_wallet_balance: number;
+  family_goals: Record<string, any> | null;
+  coordination_preferences: Record<string, any> | null;
+  created_at: string;
+  updated_at: string;
+  is_active: boolean;
+}
+
+export interface FamilyMember {
+  id: string;
+  family_plan_id: string;
+  user_id: string;
+  role: string;
+  display_name: string | null;
+  relationship: string | null;
+  permissions: Record<string, any> | null;
+  privacy_settings: Record<string, any> | null;
+  joined_at: string;
+  is_active: boolean;
+}
+
+export interface Referral {
+  id: string;
+  referrer_id: string;
+  referee_id: string | null;
+  referral_code: string;
+  referral_method: string | null;
+  referral_source: string | null;
+  invited_at: string;
+  signed_up_at: string | null;
+  first_purchase_at: string | null;
+  reward_status: string;
+  reward_amount: number | null;
+  bonus_tier: number;
+  metadata: Record<string, any> | null;
+}
+
+export interface CommunityChallenge {
+  id: string;
+  challenge_name: string;
+  description: string;
+  challenge_type: string | null;
+  difficulty_level: number;
+  duration_days: number;
+  max_participants: number | null;
+  entry_requirements: Record<string, any> | null;
+  success_criteria: Record<string, any> | null;
+  reward_structure: Record<string, any> | null;
+  start_date: string | null;
+  end_date: string | null;
+  created_by: string | null;
+  is_public: boolean;
+  is_active: boolean;
+  featured_priority: number;
+  created_at: string;
+}
+
+export interface ChallengeParticipant {
+  id: string;
+  challenge_id: string;
+  user_id: string;
+  joined_at: string;
+  completion_status: string;
+  completion_date: string | null;
+  final_score: number;
+  rank_position: number | null;
+  rewards_earned: Record<string, any> | null;
+  is_visible: boolean;
+}
+
+export interface ChallengeProgress {
+  id: string;
+  challenge_participant_id: string;
+  progress_date: string;
+  progress_data: Record<string, any>;
+  daily_score: number;
+  cumulative_score: number;
+  notes: string | null;
+  auto_generated: boolean;
+  created_at: string;
+}
+
+export interface UserRecipe {
+  id: string;
+  user_id: string;
+  recipe_name: string;
+  description: string | null;
+  ingredients: Record<string, any>;
+  instructions: string;
+  prep_time_minutes: number | null;
+  servings: number;
+  difficulty_level: number;
+  nutritional_info: Record<string, any> | null;
+  tags: string[] | null;
+  image_url: string | null;
+  is_public: boolean;
+  featured_at: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface RecipeReview {
+  id: string;
+  recipe_id: string;
+  reviewer_id: string;
+  rating: number | null;
+  review_text: string | null;
+  helpful_votes: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface HealthProfessional {
+  id: string;
+  user_id: string | null;
+  professional_name: string;
+  credentials: string[] | null;
+  specializations: string[] | null;
+  bio: string | null;
+  years_experience: number | null;
+  consultation_rate: number | null;
+  available_time_slots: Record<string, any> | null;
+  languages: string[] | null;
+  profile_image_url: string | null;
+  verification_status: string;
+  verification_documents: Record<string, any> | null;
+  rating_average: number;
+  total_consultations: number;
+  is_available: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ConsultationSession {
+  id: string;
+  user_id: string;
+  professional_id: string;
+  session_date: string;
+  duration_minutes: number;
+  session_type: string;
+  session_status: string;
+  session_notes: string | null;
+  user_feedback_rating: number | null;
+  user_feedback_text: string | null;
+  session_cost: number | null;
+  payment_status: string;
+  recording_url: string | null;
+  follow_up_scheduled: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface SocialAchievement {
+  id: string;
+  user_id: string;
+  achievement_type: string;
+  achievement_name: string;
+  description: string | null;
+  related_entity_id: string | null;
+  related_entity_type: string | null;
+  points_awarded: number;
+  badge_awarded: string | null;
+  special_reward: Record<string, any> | null;
+  achieved_at: string;
+  is_public: boolean;
+  celebration_shown: boolean;
+}
+
+// Enhanced types with relationships
+export interface ChallengeWithParticipants extends CommunityChallenge {
+  participants?: ChallengeParticipant[];
+  participant_count?: number;
+  user_participation?: ChallengeParticipant;
+}
+
+export interface RecipeWithReviews extends UserRecipe {
+  reviews?: RecipeReview[];
+  average_rating?: number;
+  review_count?: number;
+  user_review?: RecipeReview;
+}
+
+export interface FamilyPlanWithMembers extends FamilyPlan {
+  members?: FamilyMember[];
+  member_count?: number;
+}
