@@ -17,35 +17,35 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
   - [x] 1.7 Create sample community challenges and family plan templates
   - [x] 1.8 Verify all social database schema tests pass
 
-- [ ] 2. Family Plan Management System
-  - [ ] 2.1 Write tests for family plan creation, member management, and role-based access control
-  - [ ] 2.2 Implement family plan creation with member invitation system
-  - [ ] 2.3 Create role-based permission system for family administrators and members
-  - [ ] 2.4 Build family member onboarding flow with profile setup and privacy controls
-  - [ ] 2.5 Implement shared billing and wallet management with individual spending tracking
-  - [ ] 2.6 Create family dashboard with aggregated progress and privacy-aware member summaries
-  - [ ] 2.7 Add family delivery coordination with preference management and conflict resolution
-  - [ ] 2.8 Verify all family plan management tests pass
+- [x] 2. Family Plan Management System
+  - [x] 2.1 Write tests for family plan creation, member management, and role-based access control
+  - [x] 2.2 Implement family plan creation with member invitation system
+  - [x] 2.3 Create role-based permission system for family administrators and members
+  - [x] 2.4 Build family member onboarding flow with profile setup and privacy controls
+  - [x] 2.5 Implement shared billing and wallet management with individual spending tracking
+  - [x] 2.6 Create family dashboard with aggregated progress and privacy-aware member summaries
+  - [x] 2.7 Add family delivery coordination with preference management and conflict resolution
+  - [x] 2.8 Verify all family plan management tests pass
 
-- [ ] 3. Referral System and User Acquisition
-  - [ ] 3.1 Write tests for referral code generation, tracking, and reward distribution
-  - [ ] 3.2 Implement secure referral code generation with collision avoidance and expiration
-  - [ ] 3.3 Create referral sharing integration with native mobile sharing and social platforms
-  - [ ] 3.4 Build referral tracking system with conversion monitoring and fraud prevention
-  - [ ] 3.5 Implement tiered reward system with milestone bonuses and ambassador programs
-  - [ ] 3.6 Create referral analytics dashboard with performance tracking and optimization insights
-  - [ ] 3.7 Add referral onboarding flow with social proof and signup optimization
-  - [ ] 3.8 Verify all referral system tests pass
+- [x] 3. Referral System and User Acquisition
+  - [x] 3.1 Write tests for referral code generation, tracking, and reward distribution
+  - [x] 3.2 Implement secure referral code generation with collision avoidance and expiration
+  - [x] 3.3 Create referral sharing integration with native mobile sharing and social platforms
+  - [x] 3.4 Build referral tracking system with conversion monitoring and fraud prevention
+  - [x] 3.5 Implement tiered reward system with milestone bonuses and ambassador programs
+  - [x] 3.6 Create referral analytics dashboard with performance tracking and optimization insights
+  - [x] 3.7 Add referral onboarding flow with social proof and signup optimization
+  - [x] 3.8 Verify all referral system tests pass
 
-- [ ] 4. Community Challenge Engine
-  - [ ] 4.1 Write tests for challenge creation, participation, progress tracking, and completion
-  - [ ] 4.2 Implement challenge management system with creation tools and moderation capabilities
-  - [ ] 4.3 Create challenge participation flow with capacity limits and prerequisite checking
-  - [ ] 4.4 Build real-time progress tracking with automatic scoring and ranking updates
-  - [ ] 4.5 Implement leaderboard system with privacy controls and social filtering options
-  - [ ] 4.6 Create challenge completion detection with automated reward distribution
-  - [ ] 4.7 Add challenge recommendation engine based on user history and preferences
-  - [ ] 4.8 Verify all community challenge tests pass
+- [x] 4. Community Challenge Engine
+  - [x] 4.1 Write tests for challenge creation, participation, progress tracking, and completion
+  - [x] 4.2 Implement challenge management system with creation tools and moderation capabilities
+  - [x] 4.3 Create challenge participation flow with capacity limits and prerequisite checking
+  - [x] 4.4 Build real-time progress tracking with automatic scoring and ranking updates
+  - [x] 4.5 Implement leaderboard system with privacy controls and social filtering options
+  - [x] 4.6 Create challenge completion detection with automated reward distribution
+  - [x] 4.7 Add challenge recommendation engine based on user history and preferences
+  - [x] 4.8 Verify all community challenge tests pass
 
 - [ ] 5. Social Achievement and Recipe Sharing System
   - [ ] 5.1 Write tests for achievement detection, recipe management, and social interactions
