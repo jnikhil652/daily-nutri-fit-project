@@ -147,3 +147,75 @@ export interface PaymentMethod {
   created_at: string;
   updated_at: string;
 }
+
+// Basic Ordering Types
+
+export interface ShoppingCart {
+  id: string;
+  user_id: string;
+  fruit_id: string;
+  quantity: number;
+  price_per_unit: number;
+  created_at: string;
+  updated_at: string;
+}
+
+export type OrderStatus = 'pending' | 'confirmed' | 'processing' | 'out_for_delivery' | 'delivered' | 'cancelled';
+
+export interface Order {
+  id: string;
+  order_number: string;
+  user_id: string;
+  delivery_address_id: string;
+  requested_delivery_date: string;
+  delivery_time_slot: string;
+  subtotal: number;
+  delivery_fee: number;
+  tax_amount: number;
+  total_amount: number;
+  payment_method: string;
+  wallet_transaction_id: string | null;
+  status: OrderStatus;
+  delivery_instructions: string | null;
+  created_at: string;
+  updated_at: string;
+  confirmed_at: string | null;
+  delivered_at: string | null;
+}
+
+export interface OrderItem {
+  id: string;
+  order_id: string;
+  fruit_id: string;
+  quantity: number;
+  price_per_unit: number;
+  total_price: number;
+  fruit_name: string;
+  fruit_description: string | null;
+  fruit_image_url: string | null;
+  created_at: string;
+}
+
+export interface DeliveryTimeSlot {
+  id: string;
+  name: string;
+  start_time: string;
+  end_time: string;
+  is_active: boolean;
+  max_orders_per_slot: number;
+  created_at: string;
+}
+
+// Enhanced types with relationships
+export interface ShoppingCartWithFruit extends ShoppingCart {
+  fruit?: Fruit;
+}
+
+export interface OrderWithDetails extends Order {
+  order_items?: OrderItem[];
+  delivery_address?: DeliveryAddress;
+}
+
+export interface OrderItemWithFruit extends OrderItem {
+  fruit?: Fruit;
+}
