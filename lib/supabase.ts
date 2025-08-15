@@ -1,17 +1,30 @@
 import 'react-native-url-polyfill/auto';
 import { createClient } from '@supabase/supabase-js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { LoggedSupabaseClient } from './utils/supabaseClientWrapper';
+import { getDefaultLoggerConfig } from './utils/supabaseLogger';
 
 const supabaseUrl = process.env.EXPO_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.EXPO_PUBLIC_SUPABASE_KEY!;
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+// Create the base Supabase client
+const supabaseClient = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     storage: AsyncStorage,
     autoRefreshToken: true,
     persistSession: true,
     detectSessionInUrl: false,
   },
+});
+
+// Wrap with logging client for development debugging
+export const supabase = new LoggedSupabaseClient(supabaseClient, {
+  ...getDefaultLoggerConfig(),
+  enabled: __DEV__, // Only enable in development
+  logLevel: 'debug',
+  includeMetadata: true,
+  includePerformance: true,
+  colorize: true,
 });
 
 // Database types
