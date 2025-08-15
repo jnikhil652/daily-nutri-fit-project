@@ -11,10 +11,10 @@ module.exports = {
     '!**/*.d.ts',
   ],
   transformIgnorePatterns: [
-    'node_modules/(?!((jest-)?react-native|@react-native(-community)?|@testing-library)/)',
+    'node_modules/(?!(react-native|@react-native|react-native-vector-icons|@react-navigation|expo|@expo|@supabase|react-native-url-polyfill|@react-native-async-storage|react-native-safe-area-context|react-native-screens|react-native-super-grid)/)',
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1',
   },
-  testEnvironment: 'node',
+  testEnvironment: 'jsdom',
 };

@@ -3,6 +3,7 @@
 > Spec: Supabase Environment Variable Rename
 > Created: 2025-01-27
 > Status: Planning
+> Priority: P3 (Low) - Technical debt cleanup, not blocking any functionality
 
 ## Overview
 

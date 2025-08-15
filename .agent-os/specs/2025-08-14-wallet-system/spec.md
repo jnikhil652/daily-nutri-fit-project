@@ -3,6 +3,7 @@
 > Spec: Wallet System
 > Created: 2025-08-14
 > Status: Planning
+> Priority: P1 (High) - Required for MVP ordering, depends on User Auth
 
 ## Overview
 
