@@ -6,6 +6,8 @@ import { FruitCatalogScreen } from '../screens/main/FruitCatalogScreen';
 import { FruitDetailScreen } from '../screens/main/FruitDetailScreen';
 import { FavoritesScreen } from '../screens/main/FavoritesScreen';
 import { WalletScreen } from '../screens/main/WalletScreen';
+import { CartScreen } from '../screens/main/CartScreen';
+import { CheckoutScreen } from '../screens/main/CheckoutScreen';
 import { MainStackParamList } from '../types/navigation';
 
 const Stack = createNativeStackNavigator<MainStackParamList>();
@@ -47,6 +49,16 @@ export const MainNavigator: React.FC = () => {
         name="Wallet" 
         component={WalletScreen} 
         options={{ title: 'My Wallet' }}
+      />
+      <Stack.Screen 
+        name="Cart" 
+        component={CartScreen} 
+        options={{ title: 'Shopping Cart' }}
+      />
+      <Stack.Screen 
+        name="Checkout" 
+        component={CheckoutScreen} 
+        options={{ title: 'Checkout' }}
       />
     </Stack.Navigator>
   );

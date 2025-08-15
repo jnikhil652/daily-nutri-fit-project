@@ -126,9 +126,7 @@ export function CartScreen() {
       Alert.alert('Empty Cart', 'Please add items to your cart before checking out');
       return;
     }
-    // TODO: Navigate to checkout screen
-    // navigation.navigate('Checkout');
-    Alert.alert('Coming Soon', 'Checkout functionality will be implemented next');
+    navigation.navigate('Checkout' as never);
   };
 
   const renderCartItem = ({ item }: { item: ShoppingCartWithFruit }) => (

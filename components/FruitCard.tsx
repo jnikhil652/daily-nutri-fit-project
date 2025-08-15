@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,14 +6,17 @@ import {
   TouchableOpacity,
   StyleSheet,
   Dimensions,
+  Alert,
 } from 'react-native';
 import { Fruit } from '../lib/supabase';
+import { useCart } from '../contexts/CartContext';
 
 interface FruitCardProps {
   fruit: Fruit;
   onPress: (fruit: Fruit) => void;
   onFavoritePress?: (fruit: Fruit) => void;
   isFavorite?: boolean;
+  showAddToCart?: boolean;
 }
 
 const { width } = Dimensions.get('window');
@@ -24,7 +27,25 @@ export const FruitCard: React.FC<FruitCardProps> = ({
   onPress,
   onFavoritePress,
   isFavorite = false,
+  showAddToCart = true,
 }) => {
+  const { addToCart } = useCart();
+  const [isAddingToCart, setIsAddingToCart] = useState(false);
+
+  const handleAddToCart = async (e: any) => {
+    e.stopPropagation();
+    if (!fruit.is_available) return;
+    
+    setIsAddingToCart(true);
+    try {
+      await addToCart(fruit.id, 1);
+      Alert.alert('Success', `${fruit.name} added to cart!`);
+    } catch (error) {
+      Alert.alert('Error', 'Failed to add item to cart');
+    } finally {
+      setIsAddingToCart(false);
+    }
+  };
   return (
     <TouchableOpacity
       style={styles.card}
@@ -77,6 +98,18 @@ export const FruitCard: React.FC<FruitCardProps> = ({
           <View style={styles.unavailableBadge}>
             <Text style={styles.unavailableText}>Out of Stock</Text>
           </View>
+        )}
+        
+        {showAddToCart && fruit.is_available && (
+          <TouchableOpacity
+            style={[styles.addToCartButton, isAddingToCart && styles.addToCartButtonDisabled]}
+            onPress={handleAddToCart}
+            disabled={isAddingToCart}
+          >
+            <Text style={styles.addToCartButtonText}>
+              {isAddingToCart ? 'Adding...' : '+ Add'}
+            </Text>
+          </TouchableOpacity>
         )}
       </View>
     </TouchableOpacity>
@@ -179,6 +212,22 @@ const styles = StyleSheet.create({
   unavailableText: {
     color: '#fff',
     fontSize: 14,
+    fontWeight: '600',
+  },
+  addToCartButton: {
+    backgroundColor: '#4CAF50',
+    borderRadius: 6,
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    marginTop: 8,
+    alignItems: 'center',
+  },
+  addToCartButtonDisabled: {
+    backgroundColor: '#ccc',
+  },
+  addToCartButtonText: {
+    color: '#fff',
+    fontSize: 12,
     fontWeight: '600',
   },
 });

@@ -13,4 +13,6 @@ export type MainStackParamList = {
   FruitDetail: { fruitId: string };
   Favorites: undefined;
   Wallet: undefined;
+  Cart: undefined;
+  Checkout: undefined;
 };
