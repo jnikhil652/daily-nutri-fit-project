@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "maestro": {
+      "command": "maestro",
+      "args": ["mcp"]
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory"]
+    },
+    "supabase": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@supabase/mcp-server-supabase@latest",
+        "--read-only",
+        "--project-ref=fsljwgadlqypihbghkfi"
+      ],
+      "env": {
+        "SUPABASE_ACCESS_TOKEN": "sbp_75cef19a1d383cf7179ff33509331e4dec06a184"
+      }
+    }
+  }
+}

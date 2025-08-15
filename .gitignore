@@ -1,14 +1,16 @@
-# Dependencies
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
 node_modules/
-.pnp
-.pnp.js
 
 # Expo
 .expo/
 dist/
 web-build/
+expo-env.d.ts
 
 # Native
+.kotlin/
 *.orig.*
 *.jks
 *.p8
@@ -19,7 +21,7 @@ web-build/
 # Metro
 .metro-health-check*
 
-# Debug
+# debug
 npm-debug.*
 yarn-debug.*
 yarn-error.*
@@ -28,38 +30,8 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# Local env files
+# local env files
 .env*.local
-.env
 
-# Typescript
+# typescript
 *.tsbuildinfo
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# Logs
-logs
-*.log
-
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Coverage directory used by tools like istanbul
-coverage/
-*.lcov
-
-# Temporary folders
-tmp/
-temp/
-
-# OS generated files
-.DS_Store?
-ehthumbs.db
-Thumbs.db

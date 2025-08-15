@@ -7,15 +7,15 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
 
 ## Tasks
 
-- [ ] 1. Database Schema and Social Infrastructure
-  - [ ] 1.1 Write tests for social database schemas and multi-user relationships
-  - [ ] 1.2 Create migration files for family_plans, family_members, referrals, community_challenges, challenge_participants, challenge_progress, user_recipes, recipe_reviews, health_professionals, consultation_sessions, social_achievements
-  - [ ] 1.3 Implement database views for family_dashboard, challenge_leaderboards, and referral_analytics
-  - [ ] 1.4 Create indexes for social query optimization and performance
-  - [ ] 1.5 Add social enhancements to existing user tables (display_name, privacy_level, social_sharing_enabled)
-  - [ ] 1.6 Populate health_professionals table with verified professional directory data
-  - [ ] 1.7 Create sample community challenges and family plan templates
-  - [ ] 1.8 Verify all social database schema tests pass
+- [x] 1. Database Schema and Social Infrastructure
+  - [x] 1.1 Write tests for social database schemas and multi-user relationships
+  - [x] 1.2 Create migration files for family_plans, family_members, referrals, community_challenges, challenge_participants, challenge_progress, user_recipes, recipe_reviews, health_professionals, consultation_sessions, social_achievements
+  - [x] 1.3 Implement database views for family_dashboard, challenge_leaderboards, and referral_analytics
+  - [x] 1.4 Create indexes for social query optimization and performance
+  - [x] 1.5 Add social enhancements to existing user tables (display_name, privacy_level, social_sharing_enabled)
+  - [x] 1.6 Populate health_professionals table with verified professional directory data
+  - [x] 1.7 Create sample community challenges and family plan templates
+  - [x] 1.8 Verify all social database schema tests pass
 
 - [ ] 2. Family Plan Management System
   - [ ] 2.1 Write tests for family plan creation, member management, and role-based access control
