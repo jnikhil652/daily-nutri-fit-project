@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/plugin-transform-class-properties": "^7.27.1",
     "@testing-library/jest-native": "^5.4.3",
     "@testing-library/react-native": "^13.2.2",
     "@types/jest": "^30.0.0",
@@ -38,31 +39,9 @@
     "babel-preset-expo": "^13.2.3",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
-    "react-test-renderer": "^19.1.1",
+    "react-test-renderer": "^19.0.0",
     "ts-jest": "^29.4.1",
     "typescript": "~5.8.3"
-  },
-  "jest": {
-    "preset": "react-native",
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
-    "setupFilesAfterEnv": [
-      "<rootDir>/jest-setup.js"
-    ],
-    "testPathIgnorePatterns": [
-      "/node_modules/",
-      "/android/",
-      "/ios/"
-    ],
-    "transformIgnorePatterns": [
-      "node_modules/(?!(react-native|@react-native|react-native-razorpay|expo|@expo|@react-navigation)/)"
-    ]
   },
   "private": true
 }
