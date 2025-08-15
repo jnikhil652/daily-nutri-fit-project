@@ -1,7 +1,7 @@
 # Technical Stack
 
-> Last Updated: 2025-08-14
-> Version: 1.0.0
+> Last Updated: 2025-08-15
+> Version: 1.1.0
 
 ## Core Technologies
 
@@ -66,9 +66,9 @@
 ## Payment & Services
 
 ### Payment Processing
-- **Provider:** Stripe (integrated with Supabase)
+- **Provider:** Razorpay (integrated with Supabase)
 - **Wallet System:** Custom implementation with Supabase database
-- **Mobile Payments:** Stripe React Native SDK
+- **Mobile Payments:** Razorpay React Native SDK
 
 ### Push Notifications
 - **Provider:** Expo Notifications

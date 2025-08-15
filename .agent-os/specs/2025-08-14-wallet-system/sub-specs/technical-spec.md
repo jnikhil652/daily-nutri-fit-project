@@ -10,7 +10,7 @@ This is the technical specification for the spec detailed in @.agent-os/specs/20
 - **Balance Storage:** Decimal precision balance storage in Supabase PostgreSQL
 - **Transaction Logging:** Comprehensive transaction history with immutable records
 - **Real-time Updates:** Supabase Realtime subscriptions for balance changes
-- **Payment Processing:** Stripe React Native SDK for secure card payments
+- **Payment Processing:** Razorpay React Native SDK for secure card payments
 - **Atomic Operations:** Database transactions to ensure balance consistency
 - **Security:** End-to-end encryption for sensitive payment data
 - **Audit Trail:** Complete audit log for all wallet operations
@@ -35,17 +35,15 @@ This is the technical specification for the spec detailed in @.agent-os/specs/20
 
 ## External Dependencies
 
-- **@stripe/stripe-react-native** - Stripe React Native SDK for payment processing
-  - **Justification:** Industry-standard payment processing with strong security and React Native support
-- **react-native-keychain** - Secure storage for payment tokens
-  - **Justification:** Secure local storage of sensitive payment information
-- **@tanstack/react-query** - Server state management for wallet data
+- **react-native-razorpay** - Razorpay React Native SDK for payment processing
+  - **Justification:** Leading payment gateway in India with comprehensive React Native support and seamless integration
+- **@tanstack/react-query** - Server state management for wallet data (already installed)
   - **Justification:** Efficient caching and synchronization of wallet balance and transactions
 
 ## Implementation Architecture
 
 ### Data Flow
-1. **Top-up:** User initiates → Stripe processes → Webhook updates balance → Real-time sync to client
+1. **Top-up:** User initiates → Razorpay processes → Webhook updates balance → Real-time sync to client
 2. **Payment:** Order created → Atomic balance deduction → Transaction recorded → UI updated
 3. **Balance Check:** Client subscribes to balance changes → Real-time updates → UI reflects current state
 

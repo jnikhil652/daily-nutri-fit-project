@@ -2,7 +2,8 @@
 
 > Spec: Wallet System
 > Created: 2025-08-14
-> Status: Planning
+> Status: In Progress (75% Complete)
+> Last Updated: 2025-08-15
 
 ## Overview
 
@@ -32,13 +33,13 @@ As a user, I want to pay for my fruit orders directly from my wallet balance, so
 
 1. **Wallet Balance Display** - Show current available balance with clear, prominent formatting
 2. **Transaction History** - Comprehensive list of all wallet transactions with details and search
-3. **Top-Up Functionality** - Add funds to wallet using credit/debit cards via Stripe integration
+3. **Top-Up Functionality** - Add funds to wallet using credit/debit cards via Razorpay integration
 4. **Payment Processing** - Secure deduction of funds for orders with real-time balance updates
 5. **Low Balance Notifications** - Alert users when wallet balance is low
 
 ## Out of Scope
 
-- Multiple wallet currencies (USD only for MVP)
+- Multiple wallet currencies (INR only for MVP)
 - Wallet-to-wallet transfers between users
 - Cashback or rewards points system
 - Scheduled automatic top-ups
@@ -48,7 +49,7 @@ As a user, I want to pay for my fruit orders directly from my wallet balance, so
 ## Expected Deliverable
 
 1. Users can view their current wallet balance and transaction history
-2. Users can top-up their wallet using credit/debit cards through Stripe
+2. Users can top-up their wallet using credit/debit cards through Razorpay
 3. Users can use wallet funds to pay for fruit orders with real-time balance updates
 
 ## Spec Documentation

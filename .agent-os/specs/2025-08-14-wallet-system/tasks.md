@@ -4,8 +4,8 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
 
 > Created: 2025-08-14
 > Status: In Progress
-> Last Updated: 2025-01-27
-> Progress: 50% Complete
+> Last Updated: 2025-08-15
+> Progress: 75% Complete
 
 ## Tasks
 
@@ -17,13 +17,14 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
   - [x] 1.5 Test database functions with sample wallet operations
   - [ ] 1.6 Verify all tests pass
 
-- [ ] 2. Stripe Integration and Payment Setup
-  - [ ] 2.1 Write tests for Stripe payment integration
-  - [ ] 2.2 Install Stripe React Native SDK and dependencies
-  - [ ] 2.3 Configure Stripe keys and webhook endpoints
-  - [ ] 2.4 Set up Supabase Edge Functions for Stripe webhooks
-  - [ ] 2.5 Implement payment intent creation and processing
-  - [ ] 2.6 Verify all tests pass
+- [x] 2. Razorpay Integration and Payment Setup
+  - [x] 2.1 Write tests for Razorpay payment integration
+  - [x] 2.2 Install Razorpay React Native SDK and dependencies
+  - [x] 2.3 Configure Razorpay keys and environment setup
+  - [x] 2.4 Set up Supabase Edge Functions for Razorpay webhooks
+  - [x] 2.5 Implement payment intent creation and processing
+  - [x] 2.6 Create TopUpModal with Razorpay integration
+  - [x] 2.7 Verify all tests pass
 
 - [x] 3. Wallet Balance Display and Real-time Updates
   - [ ] 3.1 Write tests for wallet balance components and state management

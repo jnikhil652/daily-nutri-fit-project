@@ -14,8 +14,8 @@
 - [ ] User Authentication - Registration, login, and profile management `M`
 - [ ] Fruit Catalog - Browse available fruits with images and descriptions `M`
 - [ ] Basic Ordering - Add fruits to cart and place orders `L`
-- [ ] Wallet System - Top-up wallet and manage balance `M`
-- [ ] Payment Integration - Stripe integration for wallet top-up `L`
+- [x] Wallet System - Top-up wallet and manage balance `M`
+- [x] Payment Integration - Razorpay integration for wallet top-up `L`
 
 ### Should-Have Features
 
@@ -24,9 +24,9 @@
 
 ### Dependencies
 
-- Supabase project setup and configuration
-- Stripe account setup and API keys
-- Initial fruit database with product information
+- ✅ Supabase project setup and configuration
+- ✅ Razorpay account setup and API keys
+- [ ] Initial fruit database with product information
 
 ## Phase 2: Health Personalization (2-3 weeks)
 

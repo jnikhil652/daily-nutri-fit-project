@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase, Wallet, WalletTransaction } from '../../lib/supabase';
+import { TopUpModal } from '../../components/TopUpModal';
 
 export const WalletScreen: React.FC = () => {
   const { user } = useAuth();
@@ -19,7 +20,7 @@ export const WalletScreen: React.FC = () => {
   const [transactions, setTransactions] = useState<WalletTransaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [topUpLoading, setTopUpLoading] = useState(false);
+  const [showTopUpModal, setShowTopUpModal] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -82,52 +83,18 @@ export const WalletScreen: React.FC = () => {
     setRefreshing(false);
   };
 
-  const handleTopUp = async (amount: number) => {
-    if (!user) return;
-
-    setTopUpLoading(true);
-    try {
-      // TODO: Implement Stripe payment integration
-      // For now, simulate a successful top-up
-      const { data, error } = await supabase.rpc('update_wallet_balance', {
-        p_user_id: user.id,
-        p_amount: amount,
-        p_type: 'top_up',
-        p_description: `Wallet top-up of $${amount.toFixed(2)}`,
-        p_reference_id: `topup_${Date.now()}`,
-      });
-
-      if (error) {
-        throw error;
-      }
-
-      Alert.alert('Success', `$${amount.toFixed(2)} added to your wallet!`);
-      await loadWalletData();
-    } catch (error) {
-      console.error('Error topping up wallet:', error);
-      Alert.alert('Error', 'Failed to add funds to wallet');
-    } finally {
-      setTopUpLoading(false);
-    }
+  const handleTopUpSuccess = async (amount: number, transactionId?: string) => {
+    Alert.alert('Success', `₹${amount.toFixed(2)} added to your wallet!`);
+    await loadWalletData();
   };
 
-  const showTopUpOptions = () => {
-    Alert.alert(
-      'Add Funds',
-      'Choose an amount to add to your wallet:',
-      [
-        { text: 'Cancel', style: 'cancel' },
-        { text: '$10', onPress: () => handleTopUp(10) },
-        { text: '$25', onPress: () => handleTopUp(25) },
-        { text: '$50', onPress: () => handleTopUp(50) },
-        { text: '$100', onPress: () => handleTopUp(100) },
-      ]
-    );
+  const showTopUpModal = () => {
+    setShowTopUpModal(true);
   };
 
   const formatTransactionAmount = (transaction: WalletTransaction) => {
     const sign = transaction.amount > 0 ? '+' : '';
-    return `${sign}$${Math.abs(transaction.amount).toFixed(2)}`;
+    return `${sign}₹${Math.abs(transaction.amount).toFixed(2)}`;
   };
 
   const getTransactionColor = (transaction: WalletTransaction) => {
@@ -202,20 +169,15 @@ export const WalletScreen: React.FC = () => {
         <View style={styles.balanceCard}>
           <Text style={styles.balanceLabel}>Wallet Balance</Text>
           <Text style={styles.balanceAmount}>
-            ${wallet?.balance?.toFixed(2) || '0.00'}
+            ₹{wallet?.balance?.toFixed(2) || '0.00'}
           </Text>
-          <Text style={styles.balanceCurrency}>{wallet?.currency || 'USD'}</Text>
+          <Text style={styles.balanceCurrency}>{wallet?.currency || 'INR'}</Text>
           
           <TouchableOpacity
-            style={[styles.topUpButton, topUpLoading && styles.topUpButtonDisabled]}
-            onPress={showTopUpOptions}
-            disabled={topUpLoading}
+            style={styles.topUpButton}
+            onPress={showTopUpModal}
           >
-            {topUpLoading ? (
-              <ActivityIndicator size="small" color="#fff" />
-            ) : (
-              <Text style={styles.topUpButtonText}>Add Funds</Text>
-            )}
+            <Text style={styles.topUpButtonText}>Add Funds</Text>
           </TouchableOpacity>
         </View>
 
@@ -252,6 +214,13 @@ export const WalletScreen: React.FC = () => {
             </View>
           )}
         </View>
+
+        {/* Top Up Modal */}
+        <TopUpModal
+          visible={showTopUpModal}
+          onClose={() => setShowTopUpModal(false)}
+          onSuccess={handleTopUpSuccess}
+        />
       </ScrollView>
     </SafeAreaView>
   );
@@ -313,9 +282,6 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     paddingHorizontal: 24,
     paddingVertical: 12,
-  },
-  topUpButtonDisabled: {
-    opacity: 0.6,
   },
   topUpButtonText: {
     color: '#fff',
