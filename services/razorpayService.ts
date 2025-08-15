@@ -245,6 +245,179 @@ export class RazorpayService {
   }
 
   /**
+   * Save payment method to database after successful payment
+   */
+  async savePaymentMethod(
+    userId: string,
+    paymentId: string,
+    cardDetails?: {
+      brand?: string;
+      last4?: string;
+      exp_month?: number;
+      exp_year?: number;
+    }
+  ): Promise<{ success: boolean; paymentMethodId?: string; error?: string }> {
+    try {
+      // Check if this is the user's first payment method to set as default
+      const { data: existingMethods } = await supabase
+        .from('payment_methods')
+        .select('id')
+        .eq('user_id', userId)
+        .eq('is_active', true);
+
+      const isFirstMethod = !existingMethods || existingMethods.length === 0;
+
+      const { data, error } = await supabase
+        .from('payment_methods')
+        .insert({
+          user_id: userId,
+          razorpay_payment_method_id: paymentId,
+          type: 'card',
+          card_brand: cardDetails?.brand || null,
+          card_last4: cardDetails?.last4 || null,
+          card_exp_month: cardDetails?.exp_month || null,
+          card_exp_year: cardDetails?.exp_year || null,
+          is_default: isFirstMethod,
+          is_active: true,
+        })
+        .select('id')
+        .single();
+
+      if (error) {
+        console.error('Error saving payment method:', error);
+        return {
+          success: false,
+          error: 'Failed to save payment method',
+        };
+      }
+
+      return {
+        success: true,
+        paymentMethodId: data.id,
+      };
+    } catch (error: any) {
+      console.error('Error in savePaymentMethod:', error);
+      return {
+        success: false,
+        error: error.message || 'Failed to save payment method',
+      };
+    }
+  }
+
+  /**
+   * Get user's saved payment methods
+   */
+  async getPaymentMethods(userId: string): Promise<{
+    success: boolean;
+    paymentMethods?: any[];
+    error?: string;
+  }> {
+    try {
+      const { data, error } = await supabase
+        .from('payment_methods')
+        .select('*')
+        .eq('user_id', userId)
+        .eq('is_active', true)
+        .order('is_default', { ascending: false })
+        .order('created_at', { ascending: false });
+
+      if (error) {
+        return {
+          success: false,
+          error: 'Failed to fetch payment methods',
+        };
+      }
+
+      return {
+        success: true,
+        paymentMethods: data || [],
+      };
+    } catch (error: any) {
+      console.error('Error fetching payment methods:', error);
+      return {
+        success: false,
+        error: error.message || 'Failed to fetch payment methods',
+      };
+    }
+  }
+
+  /**
+   * Delete a payment method
+   */
+  async deletePaymentMethod(
+    userId: string,
+    paymentMethodId: string
+  ): Promise<{ success: boolean; error?: string }> {
+    try {
+      const { error } = await supabase
+        .from('payment_methods')
+        .update({ is_active: false })
+        .eq('id', paymentMethodId)
+        .eq('user_id', userId);
+
+      if (error) {
+        return {
+          success: false,
+          error: 'Failed to delete payment method',
+        };
+      }
+
+      return { success: true };
+    } catch (error: any) {
+      console.error('Error deleting payment method:', error);
+      return {
+        success: false,
+        error: error.message || 'Failed to delete payment method',
+      };
+    }
+  }
+
+  /**
+   * Set a payment method as default
+   */
+  async setDefaultPaymentMethod(
+    userId: string,
+    paymentMethodId: string
+  ): Promise<{ success: boolean; error?: string }> {
+    try {
+      // First, unset all other default payment methods
+      const { error: unsetError } = await supabase
+        .from('payment_methods')
+        .update({ is_default: false })
+        .eq('user_id', userId);
+
+      if (unsetError) {
+        return {
+          success: false,
+          error: 'Failed to update default payment method',
+        };
+      }
+
+      // Then set the selected one as default
+      const { error: setError } = await supabase
+        .from('payment_methods')
+        .update({ is_default: true })
+        .eq('id', paymentMethodId)
+        .eq('user_id', userId);
+
+      if (setError) {
+        return {
+          success: false,
+          error: 'Failed to set default payment method',
+        };
+      }
+
+      return { success: true };
+    } catch (error: any) {
+      console.error('Error setting default payment method:', error);
+      return {
+        success: false,
+        error: error.message || 'Failed to set default payment method',
+      };
+    }
+  }
+
+  /**
    * Get configuration status for debugging
    */
   getConfigStatus(): { configured: boolean; keyId: string } {

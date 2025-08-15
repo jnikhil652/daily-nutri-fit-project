@@ -450,7 +450,7 @@ CREATE TABLE wallet_transactions (
   status transaction_status DEFAULT 'pending' NOT NULL,
   description TEXT NOT NULL,
   reference_id TEXT,
-  stripe_payment_intent_id TEXT,
+  razorpay_payment_id TEXT,
   metadata JSONB DEFAULT '{}',
   created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, now()) NOT NULL,
   processed_at TIMESTAMP WITH TIME ZONE,
@@ -465,7 +465,7 @@ CREATE TABLE wallet_transactions (
 CREATE TABLE payment_methods (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   user_id UUID REFERENCES profiles(id) ON DELETE CASCADE NOT NULL,
-  stripe_payment_method_id TEXT NOT NULL UNIQUE,
+  razorpay_payment_method_id TEXT NOT NULL UNIQUE,
   type TEXT DEFAULT 'card' NOT NULL,
   card_brand TEXT,
   card_last4 TEXT,
@@ -527,7 +527,7 @@ CREATE OR REPLACE FUNCTION update_wallet_balance(
   p_type transaction_type,
   p_description TEXT,
   p_reference_id TEXT DEFAULT NULL,
-  p_stripe_payment_intent_id TEXT DEFAULT NULL,
+  p_razorpay_payment_id TEXT DEFAULT NULL,
   p_metadata JSONB DEFAULT '{}'
 )
 RETURNS UUID AS $$
@@ -563,10 +563,10 @@ BEGIN
   -- Insert transaction record
   INSERT INTO wallet_transactions (
     wallet_id, user_id, type, amount, balance_before, balance_after,
-    status, description, reference_id, stripe_payment_intent_id, metadata
+    status, description, reference_id, razorpay_payment_id, metadata
   ) VALUES (
     v_wallet_id, p_user_id, p_type, p_amount, v_balance_before, v_balance_after,
-    'completed', p_description, p_reference_id, p_stripe_payment_intent_id, p_metadata
+    'completed', p_description, p_reference_id, p_razorpay_payment_id, p_metadata
   ) RETURNING id INTO v_transaction_id;
   
   RETURN v_transaction_id;

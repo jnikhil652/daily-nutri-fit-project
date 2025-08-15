@@ -3,9 +3,9 @@
 These are the tasks to be completed for the spec detailed in @.agent-os/specs/2025-08-14-wallet-system/spec.md
 
 > Created: 2025-08-14
-> Status: In Progress
-> Last Updated: 2025-08-15
-> Progress: 75% Complete
+> Status: Complete
+> Last Updated: 2025-01-27
+> Progress: 100% Complete
 
 ## Tasks
 
@@ -30,11 +30,11 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
   - [x] 3.3 Add loading states and error handling for balance fetching
   - [x] 3.4 Create BalanceCard component with currency formatting
 
-- [ ] 4. Top-Up Functionality
-  - [ ] 4.1 Create TopUpModal with amount selection and validation
-  - [ ] 4.2 Implement payment method selection and card input
-  - [ ] 4.3 Add secure payment processing with Stripe
-  - [ ] 4.4 Handle payment success/failure with user feedback
+- [x] 4. Top-Up Functionality
+  - [x] 4.1 Create TopUpModal with amount selection and validation
+  - [x] 4.2 Implement payment method selection and card input
+  - [x] 4.3 Add secure payment processing with Razorpay
+  - [x] 4.4 Handle payment success/failure with user feedback
 
 - [x] 5. Transaction History and Management
   - [x] 5.1 Create TransactionList component with infinite scroll
@@ -42,8 +42,8 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
   - [x] 5.3 Add transaction detail view with full information
   - [x] 5.4 Format transaction amounts and dates for display
 
-- [ ] 6. Payment Method Storage and Management
-  - [ ] 6.1 Implement secure payment method storage with Stripe
-  - [ ] 6.2 Create payment method selection interface
-  - [ ] 6.3 Add default payment method management
-  - [ ] 6.4 Enable payment method deletion and updates
+- [x] 6. Payment Method Storage and Management
+  - [x] 6.1 Implement secure payment method storage with Razorpay
+  - [x] 6.2 Create payment method selection interface
+  - [x] 6.3 Add default payment method management
+  - [x] 6.4 Enable payment method deletion and updates

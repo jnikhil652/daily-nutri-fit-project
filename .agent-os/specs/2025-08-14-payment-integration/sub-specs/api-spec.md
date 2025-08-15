@@ -7,9 +7,9 @@ This is the API specification for the spec detailed in @.agent-os/specs/2025-08-
 
 ## Edge Functions Endpoints
 
-### POST /functions/v1/create-stripe-customer
+### POST /functions/v1/create-razorpay-customer
 
-**Purpose:** Create a Stripe customer for new users
+**Purpose:** Create a Razorpay customer for new users
 **Parameters:** 
 - `user_id`: UUID (required)
 - `email`: string (required)
@@ -18,42 +18,42 @@ This is the API specification for the spec detailed in @.agent-os/specs/2025-08-
 **Response:**
 ```json
 {
-  "customer_id": "cus_xxxxxxxxxx",
+  "customer_id": "cust_xxxxxxxxxx",
   "success": true
 }
 ```
 
 **Errors:** 
 - 400: Invalid user data
-- 500: Stripe API error
+- 500: Razorpay API error
 
-### POST /functions/v1/create-payment-intent
+### POST /functions/v1/create-razorpay-order
 
-**Purpose:** Create payment intent for wallet top-up
+**Purpose:** Create Razorpay order for wallet top-up
 **Parameters:**
-- `amount`: number (required, in cents)
-- `currency`: string (default: "usd")
+- `amount`: number (required, in paise)
+- `currency`: string (default: "INR")
 - `customer_id`: string (required)
 - `payment_method_id`: string (optional, for saved cards)
 
 **Response:**
 ```json
 {
-  "client_secret": "pi_xxxxxx_secret_xxxxx",
-  "payment_intent_id": "pi_xxxxxxxxxx",
-  "amount": 2500,
-  "currency": "usd"
+  "order_id": "order_xxxxxxxxxx",
+  "amount": 250000,
+  "currency": "INR",
+  "key": "rzp_test_xxxxxxxxxx"
 }
 ```
 
 **Errors:**
 - 400: Invalid amount or customer
 - 401: Unauthorized user
-- 500: Stripe API error
+- 500: Razorpay API error
 
 ### POST /functions/v1/save-payment-method
 
-**Purpose:** Save payment method to Stripe customer
+**Purpose:** Save payment method to Razorpay customer
 **Parameters:**
 - `payment_method_id`: string (required)
 - `customer_id`: string (required) 
@@ -79,7 +79,7 @@ This is the API specification for the spec detailed in @.agent-os/specs/2025-08-
 **Errors:**
 - 400: Invalid payment method
 - 401: Unauthorized user
-- 500: Stripe API error
+- 500: Razorpay API error
 
 ### GET /functions/v1/list-payment-methods
 
@@ -108,7 +108,7 @@ This is the API specification for the spec detailed in @.agent-os/specs/2025-08-
 
 **Errors:**
 - 401: Unauthorized user
-- 500: Stripe API error
+- 500: Razorpay API error
 
 ### DELETE /functions/v1/remove-payment-method
 
@@ -128,18 +128,18 @@ This is the API specification for the spec detailed in @.agent-os/specs/2025-08-
 **Errors:**
 - 400: Payment method not found
 - 401: Unauthorized user
-- 500: Stripe API error
+- 500: Razorpay API error
 
-### POST /functions/v1/stripe-webhook
+### POST /functions/v1/razorpay-webhook
 
-**Purpose:** Handle Stripe webhook events
+**Purpose:** Handle Razorpay webhook events
 **Headers:**
-- `stripe-signature`: string (required)
+- `x-razorpay-signature`: string (required)
 
 **Webhook Events Handled:**
-- `payment_intent.succeeded` - Update wallet balance
-- `payment_intent.payment_failed` - Handle payment failure
-- `payment_method.attached` - Confirm payment method saved
+- `payment.captured` - Update wallet balance
+- `payment.failed` - Handle payment failure
+- `payment_link.paid` - Confirm payment method saved
 - `customer.updated` - Sync customer data
 
 **Response:**

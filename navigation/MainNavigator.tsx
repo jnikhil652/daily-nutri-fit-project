@@ -6,6 +6,7 @@ import { FruitCatalogScreen } from '../screens/main/FruitCatalogScreen';
 import { FruitDetailScreen } from '../screens/main/FruitDetailScreen';
 import { FavoritesScreen } from '../screens/main/FavoritesScreen';
 import { WalletScreen } from '../screens/main/WalletScreen';
+import { PaymentMethodsScreen } from '../screens/main/PaymentMethodsScreen';
 import { CartScreen } from '../screens/main/CartScreen';
 import { CheckoutScreen } from '../screens/main/CheckoutScreen';
 import { MainStackParamList } from '../types/navigation';
@@ -49,6 +50,11 @@ export const MainNavigator: React.FC = () => {
         name="Wallet" 
         component={WalletScreen} 
         options={{ title: 'My Wallet' }}
+      />
+      <Stack.Screen 
+        name="PaymentMethods" 
+        component={PaymentMethodsScreen} 
+        options={{ title: 'Payment Methods' }}
       />
       <Stack.Screen 
         name="Cart" 

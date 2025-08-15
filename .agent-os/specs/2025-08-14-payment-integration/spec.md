@@ -7,7 +7,7 @@
 
 ## Overview
 
-Implement comprehensive Stripe payment integration that handles secure card processing, payment method storage, webhook management, and seamless integration with the wallet system. This system will enable users to add funds to their wallets and process payments with enterprise-grade security and compliance.
+Implement comprehensive Razorpay payment integration that handles secure card processing, payment method storage, webhook management, and seamless integration with the wallet system. This system will enable users to add funds to their wallets and process payments with enterprise-grade security and compliance.
 
 ## User Stories
 
@@ -15,7 +15,7 @@ Implement comprehensive Stripe payment integration that handles secure card proc
 
 As a user, I want to securely add my credit or debit card information, so that I can easily top up my wallet and make payments without re-entering card details each time.
 
-**Workflow:** User navigates to payment settings, taps "Add Payment Method", enters card information using Stripe's secure card input, verifies card with small authorization charge, saves card with encrypted storage, and sets as default payment method if desired.
+**Workflow:** User navigates to payment settings, taps "Add Payment Method", enters card information using Razorpay's secure card input, verifies card with small authorization charge, saves card with encrypted storage, and sets as default payment method if desired.
 
 ### Process Wallet Top-Up
 
@@ -31,9 +31,9 @@ As a user, I want to receive clear information when my payment fails and guidanc
 
 ## Spec Scope
 
-1. **Stripe SDK Integration** - Secure payment processing with Stripe React Native SDK
+1. **Razorpay SDK Integration** - Secure payment processing with Razorpay React Native SDK
 2. **Payment Method Storage** - Save and manage user payment methods securely
-3. **Webhook Handling** - Process Stripe webhooks for payment confirmations and failures
+3. **Webhook Handling** - Process Razorpay webhooks for payment confirmations and failures
 4. **PCI Compliance** - Ensure all payment data handling meets PCI DSS standards
 5. **Error Handling** - Comprehensive error handling for all payment scenarios
 
@@ -48,7 +48,7 @@ As a user, I want to receive clear information when my payment fails and guidanc
 
 ## Expected Deliverable
 
-1. Users can securely add and manage payment methods using Stripe
+1. Users can securely add and manage payment methods using Razorpay
 2. Users can top up their wallet balance with real-time payment processing
 3. System handles payment failures gracefully with clear user feedback and recovery options
 

@@ -93,7 +93,7 @@ This is the tests coverage details for the spec detailed in @.agent-os/specs/202
 
 **External Services**
 - Mock Supabase API calls for database operations
-- Mock Stripe payment processing for subscription testing
+- Mock Razorpay payment processing for subscription testing
 - Mock Expo Notifications for push notification testing
 
 **Time-Based Tests**
@@ -178,7 +178,7 @@ const testSubscriptionPlans = {
 
 ### Mock Services
 - Setup Supabase test client with mock responses
-- Configure test payment processing with Stripe test mode
+- Configure test payment processing with Razorpay test mode
 - Mock push notification service for delivery reminders
 - Setup test data for seasonal availability
 

@@ -7,20 +7,20 @@ These are the tasks to be completed for the spec detailed in @.agent-os/specs/20
 
 ## Tasks
 
-- [ ] 1. Stripe Configuration and Edge Functions Setup
-  - [ ] 1.1 Set up Stripe account and obtain API keys
+- [ ] 1. Razorpay Configuration and Edge Functions Setup
+  - [ ] 1.1 Set up Razorpay account and obtain API keys
   - [ ] 1.2 Create Supabase Edge Functions for payment processing
   - [ ] 1.3 Implement webhook endpoint with signature verification
-  - [ ] 1.4 Configure Stripe webhook endpoints and events
+  - [ ] 1.4 Configure Razorpay webhook endpoints and events
 
-- [ ] 2. Stripe React Native SDK Integration
-  - [ ] 2.1 Install Stripe React Native SDK and configure providers
-  - [ ] 2.2 Set up StripeProvider with publishable key
+- [ ] 2. Razorpay React Native SDK Integration
+  - [ ] 2.1 Install Razorpay React Native SDK and configure providers
+  - [ ] 2.2 Set up RazorpayProvider with publishable key
   - [ ] 2.3 Create PaymentProvider context for state management
   - [ ] 2.4 Test SDK initialization and basic functionality
 
 - [ ] 3. Payment Method Management
-  - [ ] 3.1 Create AddPaymentMethodScreen with Stripe CardField
+  - [ ] 3.1 Create AddPaymentMethodScreen with Razorpay CardField
   - [ ] 3.2 Implement secure card tokenization and storage
   - [ ] 3.3 Build PaymentMethodList with saved cards display
   - [ ] 3.4 Add payment method deletion and default setting

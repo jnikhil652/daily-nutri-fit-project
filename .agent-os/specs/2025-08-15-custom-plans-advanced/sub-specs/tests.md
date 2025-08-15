@@ -120,7 +120,7 @@ This is the tests coverage details for the spec detailed in @.agent-os/specs/202
 
 **External Services**
 - Mock Supabase database operations for plan storage and retrieval
-- Mock Stripe payment processing for plan cost calculations and billing
+- Mock Razorpay payment processing for plan cost calculations and billing
 - Mock push notification services for iOS and Android platforms
 - Mock seasonal fruit data APIs for availability and pricing information
 

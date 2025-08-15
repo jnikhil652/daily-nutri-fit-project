@@ -136,7 +136,7 @@ export interface WalletTransaction {
 export interface PaymentMethod {
   id: string;
   user_id: string;
-  stripe_payment_method_id: string;
+  razorpay_payment_method_id: string;
   type: string;
   card_brand: string | null;
   card_last4: string | null;

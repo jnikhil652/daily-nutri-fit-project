@@ -10,12 +10,14 @@ import {
   Alert,
   RefreshControl,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../contexts/AuthContext';
 import { supabase, Wallet, WalletTransaction } from '../../lib/supabase';
 import { TopUpModal } from '../../components/TopUpModal';
 
 export const WalletScreen: React.FC = () => {
   const { user } = useAuth();
+  const navigation = useNavigation();
   const [wallet, setWallet] = useState<Wallet | null>(null);
   const [transactions, setTransactions] = useState<WalletTransaction[]>([]);
   const [loading, setLoading] = useState(true);
@@ -88,7 +90,7 @@ export const WalletScreen: React.FC = () => {
     await loadWalletData();
   };
 
-  const showTopUpModal = () => {
+  const handleShowTopUpModal = () => {
     setShowTopUpModal(true);
   };
 
@@ -175,7 +177,7 @@ export const WalletScreen: React.FC = () => {
           
           <TouchableOpacity
             style={styles.topUpButton}
-            onPress={showTopUpModal}
+            onPress={handleShowTopUpModal}
           >
             <Text style={styles.topUpButtonText}>Add Funds</Text>
           </TouchableOpacity>
@@ -185,7 +187,10 @@ export const WalletScreen: React.FC = () => {
         <View style={styles.actionsContainer}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           <View style={styles.actionsRow}>
-            <TouchableOpacity style={styles.actionButton}>
+            <TouchableOpacity 
+              style={styles.actionButton}
+              onPress={() => navigation.navigate('PaymentMethods' as never)}
+            >
               <Text style={styles.actionButtonText}>💳</Text>
               <Text style={styles.actionButtonLabel}>Payment Methods</Text>
             </TouchableOpacity>
