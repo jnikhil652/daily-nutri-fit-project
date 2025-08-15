@@ -15,37 +15,77 @@ jest.mock('react-native-razorpay', () => ({
   })),
 }));
 
-// Mock Supabase
-jest.mock('./lib/supabase', () => ({
-  supabase: {
-    auth: {
-      getUser: jest.fn(() => Promise.resolve({
-        data: { user: { id: 'test-user-id' } },
-        error: null,
-      })),
-      signInWithPassword: jest.fn(),
-      signUp: jest.fn(),
-      signOut: jest.fn(),
-    },
-    functions: {
-      invoke: jest.fn(() => Promise.resolve({
-        data: {},
-        error: null,
-      })),
-    },
-    rpc: jest.fn(() => Promise.resolve({
-      data: {},
+// Mock React Native Alert specifically
+jest.mock('react-native/Libraries/Alert/Alert', () => ({
+  alert: jest.fn(),
+}));
+
+// Enhanced Supabase mock with proper auth object
+const mockSupabaseClient = {
+  auth: {
+    getUser: jest.fn(() => Promise.resolve({
+      data: { user: { id: 'test-user-id', email: 'test@example.com' } },
       error: null,
     })),
-    from: jest.fn(() => ({
-      select: jest.fn().mockReturnThis(),
-      insert: jest.fn().mockReturnThis(),
-      update: jest.fn().mockReturnThis(),
-      delete: jest.fn().mockReturnThis(),
-      eq: jest.fn().mockReturnThis(),
-      single: jest.fn(() => Promise.resolve({ data: {}, error: null })),
+    getSession: jest.fn(() => Promise.resolve({
+      data: { session: { user: { id: 'test-user-id' } } },
+      error: null,
+    })),
+    signInWithPassword: jest.fn(() => Promise.resolve({
+      data: { user: { id: 'test-user-id' }, session: {} },
+      error: null,
+    })),
+    signUp: jest.fn(() => Promise.resolve({
+      data: { user: { id: 'test-user-id' }, session: {} },
+      error: null,
+    })),
+    signOut: jest.fn(() => Promise.resolve({ error: null })),
+  },
+  functions: {
+    invoke: jest.fn(() => Promise.resolve({
+      data: { success: true },
+      error: null,
     })),
   },
+  rpc: jest.fn(() => Promise.resolve({
+    data: {},
+    error: null,
+  })),
+  from: jest.fn(() => ({
+    select: jest.fn().mockReturnThis(),
+    insert: jest.fn().mockReturnThis(),
+    update: jest.fn().mockReturnThis(),
+    delete: jest.fn().mockReturnThis(),
+    upsert: jest.fn().mockReturnThis(),
+    eq: jest.fn().mockReturnThis(),
+    neq: jest.fn().mockReturnThis(),
+    gt: jest.fn().mockReturnThis(),
+    gte: jest.fn().mockReturnThis(),
+    lt: jest.fn().mockReturnThis(),
+    lte: jest.fn().mockReturnThis(),
+    like: jest.fn().mockReturnThis(),
+    ilike: jest.fn().mockReturnThis(),
+    in: jest.fn().mockReturnThis(),
+    contains: jest.fn().mockReturnThis(),
+    order: jest.fn().mockReturnThis(),
+    limit: jest.fn().mockReturnThis(),
+    range: jest.fn().mockReturnThis(),
+    single: jest.fn(() => Promise.resolve({ 
+      data: { 
+        id: 'test-id',
+        balance: 1000,
+        user_id: 'test-user-id',
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      }, 
+      error: null 
+    })),
+    maybeSingle: jest.fn(() => Promise.resolve({ data: null, error: null })),
+  })),
+};
+
+jest.mock('./lib/supabase', () => ({
+  supabase: mockSupabaseClient,
 }));
 
 // Mock useAuth hook
@@ -68,8 +108,20 @@ jest.mock('@react-navigation/native', () => ({
   useNavigation: jest.fn(() => ({
     navigate: jest.fn(),
     goBack: jest.fn(),
+    reset: jest.fn(),
   })),
-  useRoute: jest.fn(),
+  useRoute: jest.fn(() => ({
+    params: {},
+  })),
+  NavigationContainer: ({ children }) => children,
+}));
+
+// Mock React Navigation Stack
+jest.mock('@react-navigation/native-stack', () => ({
+  createNativeStackNavigator: jest.fn(() => ({
+    Navigator: ({ children }) => children,
+    Screen: ({ children }) => children,
+  })),
 }));
 
 // Mock Expo modules
@@ -79,3 +131,10 @@ jest.mock('expo-status-bar', () => ({
 
 // Setup testing environment
 global.__DEV__ = true;
+
+// Suppress console errors and warnings in tests
+global.console = {
+  ...console,
+  error: jest.fn(),
+  warn: jest.fn(),
+};
