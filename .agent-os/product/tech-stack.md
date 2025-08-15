@@ -1,7 +1,7 @@
 # Technical Stack
 
 > Last Updated: 2025-08-15
-> Version: 1.1.0
+> Version: 1.2.0
 
 ## Core Technologies
 
@@ -21,10 +21,10 @@
 ## Frontend Stack
 
 ### Mobile App Framework
-- **Framework:** React Native
-- **Version:** Latest stable
-- **Build Tool:** Expo
-- **TypeScript:** Yes
+- **Framework:** React Native 0.79.5
+- **Version:** React 19.0.0
+- **Build Tool:** Expo ~53.0.20
+- **TypeScript:** ~5.8.3 (Fully implemented)
 
 ### Import Strategy
 - **Strategy:** Node.js modules
@@ -32,9 +32,10 @@
 - **Node Version:** 22 LTS
 
 ### UI Components
-- **Mobile:** NativeBase or React Native Elements
-- **Version:** Latest stable
-- **Navigation:** React Navigation
+- **Mobile:** React Native built-in components + react-native-super-grid
+- **Navigation:** React Navigation 7.x (Native Stack)
+- **State Management:** React Context API (Auth & Cart contexts)
+- **Forms:** React Hook Form with Yup validation
 
 ## Assets & Media
 
@@ -66,13 +67,27 @@
 ## Payment & Services
 
 ### Payment Processing
-- **Provider:** Razorpay (integrated with Supabase)
-- **Wallet System:** Custom implementation with Supabase database
-- **Mobile Payments:** Razorpay React Native SDK
+- **Provider:** Razorpay (integrated with Supabase Edge Functions)
+- **Wallet System:** Custom PostgreSQL implementation with atomic transactions
+- **Mobile Payments:** react-native-razorpay 2.3.0
+- **Security:** RLS policies and server-side payment verification
 
 ### Push Notifications
 - **Provider:** Expo Notifications
 - **Scheduling:** For delivery reminders and health tips
+
+## Testing & Development
+
+### Testing Framework
+- **Unit Testing:** Jest 30.0.5 + React Test Renderer
+- **Component Testing:** @testing-library/react-native
+- **Coverage:** Comprehensive test coverage for auth, components, and services
+- **Database Testing:** SQL-based schema validation tests
+
+### Development Tools
+- **Data Fetching:** @tanstack/react-query for caching and state management
+- **Async Storage:** @react-native-async-storage/async-storage
+- **URL Polyfill:** react-native-url-polyfill for Node.js compatibility
 
 ## Deployment
 
