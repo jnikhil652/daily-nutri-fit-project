@@ -127,7 +127,10 @@ export class CartService {
       .eq('user_id', user.id)
       .order('created_at', { ascending: false });
 
-    if (error) throw new Error('Failed to load cart');
+    if (error) {
+      console.error('Database error loading cart:', error);
+      throw new Error(`Failed to load cart: ${error.message}`);
+    }
     return data as ShoppingCartWithFruit[];
   }
 

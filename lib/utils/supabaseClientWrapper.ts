@@ -85,6 +85,11 @@ export class LoggedSupabaseClient {
     return this.client.functions;
   }
 
+  // Proxy channel method for real-time subscriptions
+  channel(name: string, options?: any) {
+    return this.client.channel(name, options);
+  }
+
   // Logger configuration methods
   updateLoggerConfig(config: Partial<LoggerConfig>): void {
     this.logger.updateConfig(config);
